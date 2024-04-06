@@ -34,10 +34,11 @@ export function useController(): Controller {
     },
     renderModal() {
       return (
-        <dialog open={this.isCTAOpen} data-testid="Party Size Modal">
-          <PartySizeList partySize={this.partySize} />
-
-          <button onClick={this.closeCTA}>close</button>
+        <dialog open={state.isCTAOpen} data-testid="Party Size Modal">
+          <PartySizeList partySize={state.partySize} />
+          <div style={{textAlign:"center"}}>
+            <button onClick={api.closeCTA}>close</button>
+          </div>
         </dialog>
       );
     },
