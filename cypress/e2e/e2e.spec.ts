@@ -16,7 +16,8 @@ const ids = {
 };
 
 describe("page load", () => {
-  it("should display welcome to {{shop}} message", () => {
+  it
+  ("should display welcome to {{shop}} message", () => {
     cy.visit("/test/book");
     cy.getByTestId("Shop Title").should("contain", "welcome to test");
   });
@@ -89,18 +90,45 @@ describe("reservation: party size", () => {
       draft.showSenior = true;
     });
 
+    // Error [Immer] Immer only supports setting array indices and the 'length' property
+    // cy.mock("get /shops/:id/menu 200", (draft) => {
+    //   draft.splice(0, draft.length);
+    //   draft.push(
+    //     client["get /shops/:shop/menu 200"]((item) => {
+    //       item.isGroupOrder = true;
+    //       item.minOrderQty = 2;
+    //     }),
+    //     client["get /shops/:shop/menu 200"]((item) => {
+    //       item.isGroupOrder = true;
+    //       item.maxOrderQty = 5;
+    //     })
+    //   );
+    // });
+
+    //fix: group orders test case fixed for "Immer only supports setting array indices and the 'length' property" error  throwing
     cy.mock("get /shops/:id/menu 200", (draft) => {
       draft.splice(0, draft.length);
-      draft.push(
-        client["get /shops/:shop/menu 200"]((item) => {
-          item.isGroupOrder = true;
-          item.minOrderQty = 2;
-        }),
-        client["get /shops/:shop/menu 200"]((item) => {
-          item.isGroupOrder = true;
-          item.maxOrderQty = 5;
-        })
-      );
+      draft.push(client["get /shops/:shop/menu 200"]((item) => {
+        return {
+          id: 111,
+          title: 'hamburger1',
+          description: 'a tasty burger',
+          isGroupOrder: true,
+          minOrderQty: 2,
+          maxOrderQty: 5
+        }
+      }),
+      client["get /shops/:shop/menu 200"]((item) => {
+        return {
+          id: 111,
+          title: 'hamburger2',
+          description: 'a tasty burger',
+          isGroupOrder: true,
+          minOrderQty: 2,
+          maxOrderQty: 5
+        }
+      }) 
+    );
     });
 
     cy.visit("/test/book");
