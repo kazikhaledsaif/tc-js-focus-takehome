@@ -135,17 +135,17 @@ describe("reservation: party size", () => {
 
     cy.getByTestId(ids.CTA).click();
 
-    cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).click();
-    cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).click();
-    cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).click();
+    cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).click({ multiple: true });
+    cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).click({ multiple: true });
+    cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).click({ multiple: true });
     [ids.ADULTS, ids.CHILDREN, ids.BABIES, ids.SENIORS].forEach((testid) => {
       cy.getByTestId(testid, ids.COUNTER.ADD).should("be.disabled");
     });
 
-    cy.getByTestId(ids.ADULTS, ids.COUNTER.SUBTRACT).click();
+    cy.getByTestId(ids.ADULTS, ids.COUNTER.SUBTRACT).click({ multiple: true });
     cy.getByTestId(ids.ADULTS, ids.COUNTER.ADD).should("not.be.disabled");
 
-    cy.getByTestId(ids.SENIORS, ids.COUNTER.ADD).click();
+    cy.getByTestId(ids.SENIORS, ids.COUNTER.ADD).click({ multiple: true });
     [ids.ADULTS, ids.SENIORS].forEach((testid) => {
       cy.getByTestId(testid, ids.COUNTER.SUBTRACT).should("not.be.disabled");
     });
