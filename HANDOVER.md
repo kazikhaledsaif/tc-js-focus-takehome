@@ -18,3 +18,10 @@ But After doing some research on react, I think I have some perspective I can sh
 - I think its better to use react lazy loading and suspense fall back for rendering component.
 - I think I will use the state management based on the complexity of the application If the application has not much state the I will use Context api and if the application is complex I would like to use Redux.
 - I think I will use Apollo Client for api calling and cache the response those are not change frequently.
+
+### Some screenshots of the task
+#### When there is no menu
+![image](https://github.com/kazikhaledsaif/tc-js-focus-takehome/assets/21054907/1b9bc252-dbc5-4846-ba0a-806d8a4122f7)
+
+#### When there is two menu
+![image](https://github.com/kazikhaledsaif/tc-js-focus-takehome/assets/21054907/8e0340b0-53a5-49b9-b389-24f6338d7904)
